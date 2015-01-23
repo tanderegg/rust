@@ -12,7 +12,7 @@ use prelude::v1::*;
 
 use sys::fs::FileDesc;
 use libc::{self, c_int};
-use io::{self, IoResult, IoError};
+use old_io::{self, IoResult, IoError};
 use sys_common;
 
 pub struct TTY {
@@ -25,7 +25,7 @@ impl TTY {
             Ok(TTY { fd: FileDesc::new(fd, true) })
         } else {
             Err(IoError {
-                kind: io::MismatchedFileTypeForOperation,
+                kind: old_io::MismatchedFileTypeForOperation,
                 desc: "file descriptor is not a TTY",
                 detail: None,
             })

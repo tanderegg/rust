@@ -11,7 +11,7 @@
 #![allow(missing_docs)]
 #![allow(dead_code)]
 
-use io::{self, IoError, IoResult};
+use old_io::{self, IoError, IoResult};
 use prelude::v1::*;
 use sys::{last_error, retry};
 use ffi::CString;
@@ -34,7 +34,7 @@ pub mod thread_local;
 
 pub fn eof() -> IoError {
     IoError {
-        kind: io::EndOfFile,
+        kind: old_io::EndOfFile,
         desc: "end of file",
         detail: None,
     }
@@ -42,7 +42,7 @@ pub fn eof() -> IoError {
 
 pub fn timeout(desc: &'static str) -> IoError {
     IoError {
-        kind: io::TimedOut,
+        kind: old_io::TimedOut,
         desc: desc,
         detail: None,
     }
@@ -50,7 +50,7 @@ pub fn timeout(desc: &'static str) -> IoError {
 
 pub fn short_write(n: uint, desc: &'static str) -> IoError {
     IoError {
-        kind: if n == 0 { io::TimedOut } else { io::ShortWrite(n) },
+        kind: if n == 0 { old_io::TimedOut } else { old_io::ShortWrite(n) },
         desc: desc,
         detail: None,
     }
@@ -58,7 +58,7 @@ pub fn short_write(n: uint, desc: &'static str) -> IoError {
 
 pub fn unimpl() -> IoError {
     IoError {
-        kind: io::IoUnavailable,
+        kind: old_io::IoUnavailable,
         desc: "operations not yet supported",
         detail: None,
     }

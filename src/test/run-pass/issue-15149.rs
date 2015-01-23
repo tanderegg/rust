@@ -8,7 +8,7 @@
 // option. This file may not be copied, modified, or distributed
 // except according to those terms.
 
-use std::io::{TempDir, Command, fs};
+use std::old_io::{TempDir, Command, fs};
 use std::os;
 
 fn main() {
